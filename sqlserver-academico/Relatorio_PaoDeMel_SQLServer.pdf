@@ -1,0 +1,274 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [ 3 0 R 5 0 R 7 0 R ] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 9 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2656 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 800 Td
+(ReLATORIO DO PROJETO - PAO DE MEL & CIA) Tj
+T*
+(Banco academico em SQL Server - PaoDeMel) Tj
+T*
+(Gerado em 14/06/2026) Tj
+T*
+() Tj
+T*
+(1. Objetivo do Projeto) Tj
+T*
+(O projeto Pao de Mel & Cia tem como objetivo oferecer um sistema para gestao de uma confeitaria/padaria,) Tj
+T*
+(permitindo controlar clientes, usuarios, pedidos, produtos, vendas, estoque de insumos e fornadas.) Tj
+T*
+() Tj
+T*
+(2. Modelo de Negocio) Tj
+T*
+(A empresa realiza vendas de produtos de confeitaria e panificacao, recebe encomendas, acompanha a producao) Tj
+T*
+(e controla estoque. Atores principais: Cliente, Atendente, Confeiteiro e Gerente.) Tj
+T*
+() Tj
+T*
+(3. Requisitos Funcionais) Tj
+T*
+(- Cadastrar clientes pessoa fisica com CPF e endereco completo.) Tj
+T*
+(- Cadastrar usuarios para acesso ao sistema.) Tj
+T*
+(- Registrar produtos, pedidos, itens de pedido, vendas e itens vendidos.) Tj
+T*
+(- Controlar insumos, estoque minimo e fornadas.) Tj
+T*
+(- Calcular automaticamente totais de pedidos e vendas.) Tj
+T*
+(- Consultar relatorios com totais e estatisticas.) Tj
+T*
+() Tj
+T*
+(4. Requisitos Nao Funcionais) Tj
+T*
+(- Utilizar SQL Server na versao academica.) Tj
+T*
+(- Usar chaves primarias e estrangeiras.) Tj
+T*
+(- Possuir restricoes de integridade.) Tj
+T*
+(- Possuir trigger, stored procedure, function e index.) Tj
+T*
+() Tj
+T*
+(5. Escolha do SGBDR) Tj
+T*
+(O SGBDR escolhido para o trabalho academico foi o SQL Server, pois o checklist exige apenas SQL Server.) Tj
+T*
+() Tj
+T*
+(6. Modelo Conceitual) Tj
+T*
+(Entidades: Cliente, Usuario, Produto, Pedido, ItemPedido, Insumo, Fornada, Venda e ItemVenda.) Tj
+T*
+(Relacionamentos: Cliente possui Pedidos; Pedido possui ItemPedido; Produto aparece em ItemPedido;) Tj
+T*
+(Cliente pode possuir Vendas; Venda possui ItemVenda; Produto aparece em ItemVenda.) Tj
+T*
+() Tj
+T*
+(7. Modelo Logico) Tj
+T*
+(Cliente\(CPFCliente, Nome, Nascimento, Sexo, Logradouro, Numero, Complemento, CEP, Bairro, Cidade, Estado, Telefone, Email\)) Tj
+T*
+(Usuario\(IDUsuario, CPFCliente, Nome, Telefone, Email, Senha, Perfil, CodigoInterno, DataCadastro\)) Tj
+T*
+(Produto\(IDProduto, Nome, Tipo, PrecoUnitario, Ativo\)) Tj
+T*
+(Pedido\(IDPedido, CPFCliente, DataPedido, DataEntrega, StatusPedido, ValorTotal\)) Tj
+T*
+(ItemPedido\(IDItemPedido, IDPedido, IDProduto, Quantidade, PrecoUnitario, Subtotal\)) Tj
+T*
+(Insumo\(IDInsumo, Nome, QuantidadeAtual, Unidade, EstoqueMinimo\)) Tj
+T*
+(Fornada\(IDFornada, TipoPao, QuantidadeProduzida, HoraSaida, DataFornada\)) Tj
+T*
+(Venda\(IDVenda, CPFCliente, DataVenda, Total\)) Tj
+T*
+(ItemVenda\(IDItemVenda, IDVenda, IDProduto, Quantidade, PrecoUnitario, Subtotal\)) Tj
+T*
+() Tj
+T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 9 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 1897 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 800 Td
+(8. Modelo Fisico e Checklist Atendido) Tj
+T*
+(- Campo autonumerado: IDENTITY\(1000,10\).) Tj
+T*
+(- Primary Key: presente em todas as tabelas principais.) Tj
+T*
+(- Foreign Key: Usuario, Pedido, ItemPedido, Venda e ItemVenda.) Tj
+T*
+(- Foreign Key ON DELETE CASCADE: Usuario, Pedido, ItemPedido e ItemVenda.) Tj
+T*
+(- NOT NULL: campos obrigatorios definidos nas tabelas.) Tj
+T*
+(- CHECK: CPF, CEP, Sexo, Estado, Perfil, Preco, Quantidade, Status e Totais.) Tj
+T*
+(- UNIQUE: Cliente.Email, Usuario.Email, Produto.Nome e Insumo.Nome.) Tj
+T*
+(- DEFAULT: CEP, datas, status, totais e produto ativo.) Tj
+T*
+(- Pelo menos 3 registros por tabela: validado no banco local.) Tj
+T*
+(- Alias AS, 2+ joins, SUM, COUNT, AVG, MAX, MIN: em 04_consultas_checklist.sql.) Tj
+T*
+(- Trigger, Stored Procedure, Function e Index: em 02_automacao.sql.) Tj
+T*
+() Tj
+T*
+(9. Automacao) Tj
+T*
+(Triggers:) Tj
+T*
+(- trg_RecalcularTotalPedido: recalcula ValorTotal do pedido ao alterar ItemPedido.) Tj
+T*
+(- trg_RecalcularTotalVenda: recalcula Total da venda ao alterar ItemVenda.) Tj
+T*
+(Stored Procedure:) Tj
+T*
+(- sp_CadastrarPedido: cria um pedido e um item inicial.) Tj
+T*
+(Function:) Tj
+T*
+(- fn_CalcularIdadeCliente: calcula idade do cliente pelo CPF.) Tj
+T*
+(Indexes:) Tj
+T*
+(- IX_Pedido_CPFCliente e IX_Venda_DataVenda.) Tj
+T*
+() Tj
+T*
+(10. Validacao Local Realizada) Tj
+T*
+(Servidor: DESKTOP-N7F37J3\\\\SQLEXPRESS) Tj
+T*
+(Banco: PaoDeMel) Tj
+T*
+(Contagens finais:) Tj
+T*
+(- Cliente: 3) Tj
+T*
+(- Usuario: 3) Tj
+T*
+(- Produto: 3) Tj
+T*
+(- Pedido: 4) Tj
+T*
+(- ItemPedido: 4) Tj
+T*
+(- Insumo: 3) Tj
+T*
+(- Fornada: 3) Tj
+T*
+(- Venda: 3) Tj
+T*
+(- ItemVenda: 3) Tj
+T*
+() Tj
+T*
+(11. Arquivos Entregues) Tj
+T*
+(- 00_executar_tudo.sql) Tj
+T*
+(- 01_modelo_fisico.sql) Tj
+T*
+(- 02_automacao.sql) Tj
+T*
+(- 03_dados_exemplo.sql) Tj
+T*
+(- 04_consultas_checklist.sql) Tj
+T*
+(- 05_verificacao.sql) Tj
+T*
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 9 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 1134 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 800 Td
+(- README.md) Tj
+T*
+(- DOCUMENTACAO.md) Tj
+T*
+(- run_sql_scripts.ps1) Tj
+T*
+() Tj
+T*
+(12. Dicionario de Dados - Resumo) Tj
+T*
+(Cliente: CPFCliente PK, Nome, Nascimento, Sexo, Logradouro, Numero, Complemento, CEP, Bairro, Cidade, Estado, Telefone, Email.) Tj
+T*
+(Usuario: IDUsuario PK, CPFCliente FK, Nome, Telefone, Email UNIQUE, Senha, Perfil CHECK, CodigoInterno, DataCadastro.) Tj
+T*
+(Produto: IDProduto PK, Nome UNIQUE, Tipo, PrecoUnitario CHECK, Ativo DEFAULT.) Tj
+T*
+(Pedido: IDPedido PK, CPFCliente FK, DataPedido DEFAULT, DataEntrega, StatusPedido CHECK, ValorTotal DEFAULT.) Tj
+T*
+(ItemPedido: IDItemPedido PK, IDPedido FK, IDProduto FK, Quantidade CHECK, PrecoUnitario CHECK, Subtotal calculado.) Tj
+T*
+(Insumo: IDInsumo PK, Nome UNIQUE, QuantidadeAtual CHECK, Unidade, EstoqueMinimo DEFAULT.) Tj
+T*
+(Fornada: IDFornada PK, TipoPao, QuantidadeProduzida CHECK, HoraSaida, DataFornada DEFAULT.) Tj
+T*
+(Venda: IDVenda PK, CPFCliente FK, DataVenda DEFAULT, Total CHECK.) Tj
+T*
+(ItemVenda: IDItemVenda PK, IDVenda FK, IDProduto FK, Quantidade CHECK, PrecoUnitario CHECK, Subtotal calculado.) Tj
+T*
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000129 00000 n 
+0000000255 00000 n 
+0000002963 00000 n 
+0000003089 00000 n 
+0000005038 00000 n 
+0000005164 00000 n 
+0000006350 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+6420
+%%EOF
