@@ -35,7 +35,7 @@ public class OrderController {
       throw new IllegalArgumentException("Informe cliente, massa, recheio e data de entrega.");
     }
 
-    String codigo = "#PM-" + (1051 + orderRepository.count());
+    String codigo = "#PM-" + (1050 + orderRepository.count() + 1);
     OrderEntity created = orderRepository.save(new OrderEntity(
         codigo,
         cliente,

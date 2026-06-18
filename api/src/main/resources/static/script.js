@@ -509,14 +509,15 @@ async function saveOrder() {
   }
 
   try {
-    await apiRequest("/api/encomendas", {
+    const created = await apiRequest("/api/encomendas", {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(payload)
     });
 
-    showToast("Encomenda criada e enviada para produção.");
+    showToast(`Encomenda ${created.codigo || ""} criada e enviada para produção.`.trim());
     resetWizardForm();
+    await loadOrders();
     showScreen("orders");
   } catch (error) {
     showToast(error.message);
